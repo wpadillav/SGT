@@ -1,5 +1,5 @@
 from models import db, User  # ✅ Ahora sí importamos User
-
+import sys
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -17,17 +17,18 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-with app.app_context():
-    if not User.query.filter_by(email="william.padilla@uniminuto.edu.co").first():
-        admin_user = User(
-            username="admin",
-            email="william.padilla@uniminuto.edu.co",
-            password_hash=generate_password_hash("admin123"),
-            is_admin=True
-        )
-        db.session.add(admin_user)
-        db.session.commit()
-        print("Usuario administrador creado con éxito.")
+if 'pytest' not in sys.modules:
+    with app.app_context():
+        if not User.query.filter_by(email="william.padilla@uniminuto.edu.co").first():
+            admin_user = User(
+                username="admin",
+                email="william.padilla@uniminuto.edu.co",
+                password_hash=generate_password_hash("admin123"),
+                is_admin=True
+            )
+            db.session.add(admin_user)
+            db.session.commit()
+            print("Usuario administrador creado con éxito.")
 
 from routes import *
 
