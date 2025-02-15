@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Editar Tarea{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mt-4">Editar Tarea</h2>
+
+    <!-- Mensajes Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} text-center" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Formulario para editar la tarea -->
+    <form method="POST" action="{{ url_for('edit_task', task_id=task.id) }}" class="mb-4">
+        <div class="row g-2">
+            <div class="col-md-4">
+                <input type="text" name="title" class="form-control" value="{{ task.title }}" required>
+            </div>
+            <div class="col-md-5">
+                <input type="text" name="description" class="form-control" value="{{ task.description }}">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Actualizar Tarea</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
