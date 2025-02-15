@@ -1,7 +1,3 @@
-Aquí tienes la **documentación completa** de tu aplicación Flask. 📄🚀  
-
----
-
 # **📌 Documentación del Proyecto - Task Manager**
 ## **📖 Descripción**
 Task Manager es una aplicación web construida con **Flask** que permite la gestión de tareas entre usuarios. Los administradores pueden asignar tareas a usuarios específicos y gestionar el estado de cada una. También cuenta con funcionalidades de autenticación, gestión de usuarios y edición de perfil.
